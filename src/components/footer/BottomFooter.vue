@@ -1,0 +1,94 @@
+<template>
+    <footer class="w-full transition-colors duration-300">
+        
+        <div class="bg-background text-foreground py-16 border-t border-foreground/10">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:justify-around gap-12">
+
+                    <div class="space-y-6 text-center md:text-left">
+                        <h3 class="text-2xl font-bold uppercase tracking-widest">
+                            Contacto
+                        </h3>
+                        <div class="space-y-4 opacity-90 font-medium">
+                            <p class="flex items-center gap-3 justify-center md:justify-start hover:opacity-100 transition-opacity">
+                                <Mail class="w-5 h-5" />
+                                <a href="mailto:mcaljy@gmail.com" class="hover:underline">
+                                    mcaljy@gmail.com
+                                </a>
+                            </p>
+                            <p class="flex items-center gap-3 justify-center md:justify-start">
+                                <MapPin class="w-5 h-5" />
+                                <span>Valencia, Valencia, ES</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 text-center md:text-left">
+                        <h3 class="text-2xl font-bold uppercase tracking-widest">
+                            ¿Nos vemos en redes?
+                        </h3>
+                        <div class="flex gap-6 justify-center md:justify-start">
+                            
+                            <a 
+                                href="https://www.instagram.com/mencia_li" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                aria-label="Instagram"
+                            >
+                                <Instagram class="w-8 h-8" />
+                            </a>
+
+                            <a 
+                                href="https://www.tiktok.com/@mencia_li" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                aria-label="TikTok"
+                            >
+                                <Music2 class="w-8 h-8" />
+                            </a>
+
+                            <a 
+                                href="https://www.youtube.com/@mencia_li" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                aria-label="YouTube"
+                            >
+                                <Youtube class="w-8 h-8" />
+                            </a>
+
+                            <a 
+                                href="https://www.linkedin.com/in/jiayi-li-998177372/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                aria-label="LinkedIn"
+                            >
+                                <Linkedin class="w-8 h-8" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full bg-foreground text-background py-6 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-6 text-center text-sm font-bold uppercase tracking-tighter opacity-80">
+                <p>© {{ new Date().getFullYear() }} MENCÍA LI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</template>
+
+<script setup lang="ts">
+import { 
+    Mail, 
+    MapPin, 
+    Instagram, 
+    Linkedin, 
+    Youtube, 
+    Music2 
+} from 'lucide-vue-next';
+</script>
