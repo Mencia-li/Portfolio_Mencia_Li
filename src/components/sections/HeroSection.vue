@@ -39,11 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+import { useNavigation } from "@/composables/useNavigation"
 
-const router = useRouter()
-
-function goToAbout(): void {
-    router.push("/sobre-mi")
-}
+const { goToAbout } = useNavigation()
 </script>

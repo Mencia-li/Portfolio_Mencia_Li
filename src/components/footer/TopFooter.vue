@@ -58,9 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick } from "vue"
-import { useRoute, useRouter } from "vue-router"
 import { useTheme } from "@/composables/useTheme"
+import { useNavigation } from "@/composables/useNavigation"
 import { Home, FolderKanban, Image, Mail, Palette, Menu } from "lucide-vue-next"
 
 import {
@@ -78,26 +77,13 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-const router = useRouter()
-const route = useRoute()
 const { setTheme } = useTheme()
+const { goToSection } = useNavigation()
 
-// Definición de items para evitar repetir código en el template
 const navItems = [
   { id: 'home', label: 'Home', icon: Home, hoverWidth: 'hover:w-28' },
   { id: 'proyectos', label: 'Proyectos', icon: FolderKanban, hoverWidth: 'hover:w-32' },
   { id: 'ilustraciones', label: 'Ilustraciones', icon: Image, hoverWidth: 'hover:w-36' },
   { id: 'contacto', label: 'Contacto', icon: Mail, hoverWidth: 'hover:w-32' }
 ] as const
-
-async function goToSection(id: typeof navItems[number]['id']): Promise<void> {
-  if (route.path !== "/") {
-    await router.push("/")
-    await nextTick()
-  }
-  const el = document.getElementById(id)
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
-}
 </script>

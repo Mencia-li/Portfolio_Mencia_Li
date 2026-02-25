@@ -106,45 +106,45 @@ const selectedCat = ref<IllustrationCategory | null>(null);
 const currentIndex = ref(0);
 
 const imgUrl = (cat: IllustrationCategory, img: IllustrationImage) =>
-  `/illustrations/${cat.folder}/${img.name}.jpg`;
+    `/illustrations/${cat.folder}/${img.name}.jpg`;
 
 const openGallery = (category: IllustrationCategory) => {
-  if (!category.images?.length) return;
-  selectedCat.value = category;
-  currentIndex.value = 0;
-  isOpen.value = true;
+    if (!category.images?.length) return;
+    selectedCat.value = category;
+    currentIndex.value = 0;
+    isOpen.value = true;
 };
 
 const closeGallery = () => {
-  isOpen.value = false;
+    isOpen.value = false;
 };
 
 const hasMany = computed(() => (selectedCat.value?.images?.length ?? 0) > 1);
 
 const next = () => {
-  const len = selectedCat.value?.images?.length ?? 0;
-  if (!len) return;
-  currentIndex.value = (currentIndex.value + 1) % len;
+    const len = selectedCat.value?.images?.length ?? 0;
+    if (!len) return;
+    currentIndex.value = (currentIndex.value + 1) % len;
 };
 
 const prev = () => {
-  const len = selectedCat.value?.images?.length ?? 0;
-  if (!len) return;
-  currentIndex.value = (currentIndex.value - 1 + len) % len;
+    const len = selectedCat.value?.images?.length ?? 0;
+    if (!len) return;
+    currentIndex.value = (currentIndex.value - 1 + len) % len;
 };
 
 const currentImageUrl = computed(() => {
-  const cat = selectedCat.value;
-  if (!cat) return "";
-  const img = cat.images?.[currentIndex.value];
-  if (!img) return "";
-  return imgUrl(cat, img);
+    const cat = selectedCat.value;
+    if (!cat) return "";
+    const img = cat.images?.[currentIndex.value];
+    if (!img) return "";
+    return imgUrl(cat, img);
 });
 
 const selectedImageAlt = computed(() => {
-  const cat = selectedCat.value;
-  const img = cat?.images?.[currentIndex.value];
-  return img?.alt || cat?.title || "Ilustración";
+    const cat = selectedCat.value;
+    const img = cat?.images?.[currentIndex.value];
+    return img?.alt || cat?.title || "Ilustración";
 });
 
 watch(isOpen, (open) => {

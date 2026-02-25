@@ -1,3 +1,4 @@
+// src/router/index.ts
 import { createRouter, createWebHashHistory } from "vue-router"
 import Home from "@/pages/home/Home.vue"
 import SobreMi from "@/pages/SobreMi.vue"
@@ -6,6 +7,16 @@ import ProjectDetail from "@/pages/ProjectDetail.vue"
 
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
+  
+  // ✅ Usamos guiones bajos para indicar parámetros no usados y eliminar los warnings
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
+  
   routes: [
     {
       path: "/",
@@ -17,8 +28,6 @@ export const router = createRouter({
       name: "sobre-mi",
       component: SobreMi,
     },
-
-    // ✅ Rutas anidadas
     {
       path: "/proyectos",
       component: Projects,
@@ -31,7 +40,6 @@ export const router = createRouter({
         },
       ],
     },
-
     {
       path: "/:patchMatch(.*)",
       redirect: "/",
