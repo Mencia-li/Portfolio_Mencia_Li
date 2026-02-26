@@ -3,7 +3,7 @@ import { X, ArrowRight } from "lucide-vue-next"
 import { useProjects } from "@/composables/useProjects"
 import { Button } from "@/components/ui/button"
 
-// Extraemos las nuevas funciones y estados del composable
+// Extraemos las funciones y estados necesarios del composable
 const { 
     visibleProjects, 
     showAll, 
@@ -30,10 +30,23 @@ const {
                     class="bg-background text-foreground p-4 md:p-6 rounded-lg shadow-md hover:scale-105 transition-all cursor-pointer group w-full max-w-[320px] sm:max-w-none mx-auto"
                 >
                     <div class="aspect-square bg-foreground mb-4 rounded-md transition-colors duration-300 overflow-hidden relative">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-primary/10 transition-opacity duration-300">
-                            <span class="bg-background text-foreground px-4 py-2 rounded-full text-xs font-bold uppercase tracking-tighter">
-                                Vista rápida
+                        <img 
+                            :src="`/img/projects/${project.folder}/${project.cover}`" 
+                            :alt="project.title"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-foreground/85 group-hover:bg-foreground/20 transition-all duration-500 backdrop-blur-[2px] group-hover:backdrop-blur-none">
+                            
+                            <span class="text-background font-bold text-xl uppercase tracking-widest transition-opacity group-hover:opacity-0 px-4 text-center">
+                                {{ project.title }}
                             </span>
+
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="bg-background text-foreground px-4 py-2 rounded-full text-xs font-bold uppercase tracking-tighter shadow-lg">
+                                    Vista rápida
+                                </span>
+                            </div>
                         </div>
                     </div>
                     
@@ -68,14 +81,18 @@ const {
                 >
                     <button 
                         @click="closePreview" 
-                        class="absolute top-4 right-4 p-2 hover:bg-background/10 rounded-full transition-colors cursor-pointer"
+                        class="absolute top-4 right-4 p-2 hover:bg-background/10 rounded-full transition-colors cursor-pointer z-10"
                     >
                         <X class="w-6 h-6" />
                     </button>
 
                     <div class="p-8 space-y-6">
-                        <div class="aspect-video bg-background/20 rounded-lg flex items-center justify-center">
-                            <span class="opacity-30 uppercase tracking-widest font-bold">Imagen del Proyecto</span>
+                        <div class="aspect-video bg-background/20 rounded-lg overflow-hidden">
+                            <img 
+                                :src="`/img/projects/${selectedProject.folder}/${selectedProject.cover}`" 
+                                :alt="selectedProject.title"
+                                class="w-full h-full object-cover"
+                            />
                         </div>
                         
                         <div class="space-y-4">

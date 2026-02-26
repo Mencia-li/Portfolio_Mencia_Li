@@ -31,15 +31,17 @@ const project = computed(() => getProjectById(route.params.id as string))
         </p>
       </div>
 
-      <div class="aspect-video bg-foreground rounded-2xl shadow-2xl transition-colors duration-300 flex items-center justify-center overflow-hidden">
-        <span class="text-background opacity-20 text-4xl font-bold uppercase tracking-widest">
-          Main Project Image
-        </span>
+      <div class="aspect-video bg-foreground rounded-2xl shadow-2xl transition-colors duration-300 overflow-hidden">
+        <img 
+          :src="`/img/projects/${project.folder}/${project.cover}`" 
+          :alt="project.title"
+          class="w-full h-full object-cover"
+        />
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-8">
         
-        <div class="md:col-span-2 space-y-8">
+        <div class="md:col-span-2 space-y-12">
             <div class="space-y-4">
                 <h2 class="text-2xl font-bold uppercase tracking-tight border-b border-foreground/10 pb-2">
                     Sobre el proyecto
@@ -49,34 +51,44 @@ const project = computed(() => getProjectById(route.params.id as string))
                 </p>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-6">
                 <h2 class="text-2xl font-bold uppercase tracking-tight border-b border-foreground/10 pb-2">
-                    El Proceso Creativo
+                    Galería de imágenes
                 </h2>
-                <p class="text-lg leading-relaxed text-justify opacity-90">
-                    En esta etapa me centré en la investigación de referentes y en la creación de una paleta cromática que transmitiera los valores del proyecto. El objetivo era lograr un equilibrio entre lo funcional y lo estético, asegurando que cada elemento gráfico tuviera una intención clara.
-                </p>
+                <div class="columns-1 sm:columns-2 gap-4 space-y-4">
+                    <div 
+                        v-for="(img, idx) in project.images" 
+                        :key="idx" 
+                        class="break-inside-avoid"
+                    >
+                        <img 
+                            :src="`/img/projects/${project.folder}/${img}`" 
+                            class="w-full rounded-xl shadow-md border border-foreground/5 hover:scale-[1.02] transition-transform duration-300"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
         
         <aside class="space-y-8 bg-foreground/5 p-8 rounded-2xl border border-foreground/10 h-fit">
             <div class="space-y-1">
                 <h4 class="text-xs font-bold uppercase tracking-widest opacity-50">Categoría</h4>
-                <p class="font-bold text-lg">Diseño Gráfico / Editorial</p>
+                <p class="font-bold text-lg">Diseño Gráfico / Tecnologías Creativas</p>
             </div>
 
             <div class="space-y-1">
                 <h4 class="text-xs font-bold uppercase tracking-widest opacity-50">Herramientas</h4>
                 <ul class="font-bold text-lg">
-                    <li>Adobe Illustrator</li>
-                    <li>Adobe InDesign</li>
+                    <li>Adobe Creative Cloud</li>
                     <li>Procreate</li>
+                    <li>Técnicas Tradicionales</li>
                 </ul>
             </div>
 
             <div class="space-y-1">
                 <h4 class="text-xs font-bold uppercase tracking-widest opacity-50">Fecha</h4>
-                <p class="font-bold text-lg">2024</p>
+                <p class="font-bold text-lg">2024 - 2025</p>
             </div>
         </aside>
 
@@ -101,7 +113,6 @@ const project = computed(() => getProjectById(route.params.id as string))
 </template>
 
 <style scoped>
-/* Transición suave para la entrada de la página */
 .animate-in {
     animation-fill-mode: forwards;
 }
