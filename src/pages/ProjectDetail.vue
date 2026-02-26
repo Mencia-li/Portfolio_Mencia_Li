@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { computed } from "vue"
+import { useRoute } from "vue-router"
+import { useProjects } from "@/composables/useProjects"
+
+const route = useRoute()
+const { getProjectById, goBack } = useProjects()
+
+// Obtenemos el proyecto usando la función del composable
+const project = computed(() => getProjectById(route.params.id as string))
+</script>
+
 <template>
   <section class="min-h-screen bg-background text-foreground flex items-center justify-center px-6 transition-colors duration-300">
     <div v-if="project" class="max-w-3xl text-center">
@@ -16,7 +28,7 @@
       </div>
 
       <button 
-        @click="$router.back()" 
+        @click="goBack" 
         class="mt-8 text-sm font-medium hover:underline cursor-pointer"
       >
         ← Volver a proyectos
@@ -30,19 +42,3 @@
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-import { computed } from "vue"
-import { useRoute } from "vue-router"
-import { projects, type Project } from "@/data/projects"
-
-const route = useRoute()
-
-/**
- * Lógica de TypeScript para encontrar el proyecto por ID
- */
-const project = computed<Project | undefined>(() => {
-  const id = Number(route.params.id)
-  return projects.find(p => p.id === id)
-})
-</script>

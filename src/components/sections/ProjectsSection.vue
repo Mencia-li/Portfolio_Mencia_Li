@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useProjects } from "@/composables/useProjects"
+
+const { visibleProjects, showAll, goToProject, allProjects } = useProjects()
+</script>
+
 <template>
     <section class="min-h-screen bg-foreground text-background px-6 py-20 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
@@ -24,7 +30,7 @@
                 </div>
             </div>
 
-            <div v-if="projectsData.length > 6" class="text-center mt-12">
+            <div v-if="allProjects.length > 6" class="text-center mt-12">
                 <button
                     @click="showAll = !showAll"
                     class="bg-background text-foreground px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
@@ -35,20 +41,3 @@
         </div>
     </section>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from "vue"
-import { useRouter } from "vue-router"
-import { projects as projectsData, type Project } from "@/data/projects"
-
-const router = useRouter()
-const showAll = ref<boolean>(false)
-
-function goToProject(id: number): void {
-    router.push({ name: "project-detail", params: { id } })
-}
-
-const visibleProjects = computed<Project[]>(() =>
-    showAll.value ? projectsData : projectsData.slice(0, 6)
-)
-</script>
