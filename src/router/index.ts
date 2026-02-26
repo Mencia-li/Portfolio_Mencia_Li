@@ -35,15 +35,20 @@ export const router = createRouter({
     // Rutas para proyectos
     {
       path: "/proyectos",
+      name: "projects-list",
       component: Projects,
-      children: [
-        {
-          path: ":id",
-          name: "project-detail",
-          component: ProjectDetail,
-          props: true,
-        },
-      ],
+    },
+    
+    /** * ✅ Cambio clave: 
+     * Definimos el detalle como una ruta independiente. 
+     * Esto permite que se renderice reemplazando la vista actual 
+     * en lugar de intentar renderizarse dentro de la página de Proyectos.
+     */
+    {
+      path: "/proyectos/:id",
+      name: "project-detail",
+      component: ProjectDetail,
+      props: true,
     },
 
     // Redirección por defecto
