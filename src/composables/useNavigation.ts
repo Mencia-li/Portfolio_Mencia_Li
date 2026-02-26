@@ -1,32 +1,27 @@
+import { nextTick } from "vue"
 import { useRoute, useRouter } from "vue-router"
 
 export function useNavigation() {
     const router = useRouter()
     const route = useRoute()
 
-    // Navegación por secciones (scroll)
     async function goToSection(id: string): Promise<void> {
+        // Si no estamos en la Home, vamos a la Home primero (URL limpia)
         if (route.path !== "/") {
-        // Si no estamos en Home, vamos a la Home con el hash
-        await router.push({ path: "/", hash: `#${id}` })
-        } else {
-        // Si ya estamos en Home, hacemos scroll manual
+        await router.push("/")
+        await nextTick()
+        }
+        
+        // Hacemos el scroll manual por ID. Esto NO cambia la barra de direcciones.
         const el = document.getElementById(id)
         if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
+        el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
     }
 
-    // Navegación a la página Sobre Mi
-    async function goToAbout(): Promise<void> {
-        await router.push("/sobre-mi")
-        // Forzamos el scroll arriba por si acaso
-        window.scrollTo(0, 0)
+    function goToAbout(): void {
+        router.push("/sobre-mi")
     }
 
-    return {
-        goToSection,
-        goToAbout
-    }
+    return { goToSection, goToAbout }
 }

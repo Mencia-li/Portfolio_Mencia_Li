@@ -5,26 +5,18 @@ import Projects from "@/pages/Projects.vue"
 import ProjectDetail from "@/pages/ProjectDetail.vue"
 
 export const router = createRouter({
+  // Mantenemos el modo Hash para compatibilidad con hosting gratuito
   history: createWebHashHistory(import.meta.env.BASE_URL),
   
   /**
-   * ✅ Control de scroll mejorado:
-   * 1. Respeta la posición si el usuario vuelve atrás.
-   * 2. Si hay un hash (ej: #contacto), se desplaza suavemente a esa sección.
-   * 3. Si no, resetea el scroll arriba del todo.
+   * ✅ Scroll simple y limpio:
+   * Al cambiar de página, siempre volvemos arriba del todo.
+   * Eliminamos la lógica de 'to.hash' para evitar los errores de URL duplicada.
    */
-  scrollBehavior(to, _from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     }
-    
-    if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-      }
-    }
-    
     return { top: 0 }
   },
   
@@ -40,7 +32,7 @@ export const router = createRouter({
       component: SobreMi,
     },
 
-    // ✅ Rutas anidadas para proyectos
+    // Rutas para proyectos
     {
       path: "/proyectos",
       component: Projects,
@@ -54,7 +46,7 @@ export const router = createRouter({
       ],
     },
 
-    // Redirección por defecto si la ruta no existe
+    // Redirección por defecto
     {
       path: "/:patchMatch(.*)",
       redirect: "/",
