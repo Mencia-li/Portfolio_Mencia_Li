@@ -16,7 +16,7 @@ export function useGallery() {
 
     // Genera la URL de la imagen (la lógica que tenías en el componente)
     const imgUrl = (cat: IllustrationCategory, img: IllustrationImage) =>
-        `/illustrations/${cat.folder}/${img.name}.jpg`;
+        `/img/illustrations/${cat.folder}/${img.name}.jpg`;
 
     const openGallery = (category: IllustrationCategory) => {
         if (!category.images?.length) return;
