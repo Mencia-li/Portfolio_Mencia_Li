@@ -37,7 +37,7 @@ export const projects: Project[] = [
         description: "Diseño de interfaz y experiencia de usuario en entornos digitales.",
         folder: "2. Juego interactivo",
         cover: "juegoInteractivo1.jpg",
-        images: Array.from({ length: 21 }, (_, i) => `juegoInteractivo${i + 1}.jpg`),
+        images: Array.from({ length: 20 }, (_, i) => `juegoInteractivo${i + 1}.jpg`),
         contexto: "Proyecto transversal en equipo (3 integrantes) para crear una experiencia interactiva completa utilizando Processing. Consiste en un juego narrativo donde el usuario avanza a través de una historia superando distintos minijuegos.",
         objetivo: "Construir una experiencia cohesionada integrando narrativa, ilustración y programación, incorporando un trabajo consciente del color script para acompañar el desarrollo narrativo.",
         proceso: "Se estructuró como un storytelling dividido en fases jugables, centrando mi papel en la dirección visual y producción gráfica. Personajes y escenarios se ilustraron a mano con acuarela, se escanearon y adaptaron digitalmente para su integración funcional en Processing.",
