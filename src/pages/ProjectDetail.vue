@@ -60,7 +60,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="min-h-screen bg-background text-foreground pt-20 transition-colors duration-300">
+  <section class="min-h-screen theme-base pt-20 transition-colors duration-300">
     
     <div v-if="project" class="animate-in fade-in slide-in-from-bottom-4 duration-700">
       
@@ -141,7 +141,7 @@ onUnmounted(() => {
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-widest opacity-50">Herramientas</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span v-for="tool in project.herramientas" :key="tool" class="bg-foreground text-background px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">
+                        <span v-for="tool in project.herramientas" :key="tool" class="theme-invert px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">
                             {{ tool }}
                         </span>
                     </div>
@@ -154,11 +154,11 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="mt-20 bg-foreground text-background py-24 text-center transition-colors duration-300">
+      <div class="mt-20 theme-invert py-24 text-center transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-6">
             <button 
                 @click="goBack" 
-                class="bg-background text-foreground px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xl border border-background/20"
+                class="theme-base px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xl border border-background/20"
             >
                 Volver a la galería
             </button>

@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen bg-foreground text-background px-6 py-20 transition-colors duration-300">
+  <section class="min-h-screen theme-invert px-6 py-20 transition-colors duration-300">
     <div class="max-w-6xl mx-auto space-y-8">
       <h1 class="text-4xl font-bold">Proyectos</h1>
       <p class="max-w-2xl opacity-90">

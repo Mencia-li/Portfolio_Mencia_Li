@@ -16,7 +16,7 @@ const {
 </script>
 
 <template>
-    <section class="min-h-screen bg-foreground text-background px-6 py-20 transition-colors duration-300">
+    <section class="min-h-screen theme-invert px-6 py-20 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center uppercase tracking-widest">
                 Mis Proyectos
@@ -27,7 +27,7 @@ const {
                     v-for="project in visibleProjects"
                     :key="project.id"
                     @click="openPreview(project)"
-                    class="bg-background text-foreground p-4 md:p-6 rounded-lg shadow-md hover:scale-105 transition-all cursor-pointer group w-full max-w-[320px] sm:max-w-none mx-auto"
+                    class="theme-base p-4 md:p-6 rounded-lg shadow-md hover:scale-105 transition-all cursor-pointer group w-full max-w-[320px] sm:max-w-none mx-auto"
                 >
                     <div class="aspect-square bg-foreground mb-4 rounded-md transition-colors duration-300 overflow-hidden relative">
                         <img 
@@ -43,7 +43,7 @@ const {
                             </span>
 
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="bg-background text-foreground px-4 py-2 rounded-full text-xs font-bold uppercase tracking-tighter shadow-lg">
+                                <span class="theme-base px-4 py-2 rounded-full text-xs font-bold uppercase tracking-tighter shadow-lg">
                                     Vista rápida
                                 </span>
                             </div>
@@ -62,7 +62,7 @@ const {
             <div v-if="allProjects.length > 6" class="text-center mt-12">
                 <button
                     @click="showAll = !showAll"
-                    class="bg-background text-foreground px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
+                    class="theme-base px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
                 >
                     {{ showAll ? 'Ver menos' : 'Ver todos los proyectos' }}
                 </button>
@@ -76,7 +76,7 @@ const {
                 @click="closePreview"
             >
                 <div 
-                    class="bg-foreground text-background max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative"
+                    class="theme-invert max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative"
                     @click.stop
                 >
                     <button 
@@ -107,7 +107,7 @@ const {
                         <div class="pt-6 border-t border-background/10 flex justify-end">
                             <Button 
                                 @click="goToProject(selectedProject.id)" 
-                                class="bg-background text-foreground gap-2 font-bold px-8 py-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                                class="theme-base gap-2 font-bold px-8 py-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
                             >
                                 Ver proyecto completo <ArrowRight class="w-5 h-5" />
                             </Button>

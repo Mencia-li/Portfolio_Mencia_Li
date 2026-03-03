@@ -1,5 +1,5 @@
 <template>
-    <section id="contacto" class="min-h-screen bg-foreground text-background px-6 py-20 transition-colors duration-300">
+    <section id="contacto" class="min-h-screen theme-invert px-6 py-20 transition-colors duration-300">
         <div class="container mx-auto max-w-5xl">
         
         <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center uppercase tracking-widest">
@@ -29,26 +29,26 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="space-y-2">
                     <Label for="nombre" class="font-semibold">Nombre</Label>
-                    <Input id="nombre" v-model="formData.nombre" class="bg-foreground text-background border-background/30" required />
+                    <Input id="nombre" v-model="formData.nombre" class="theme-invert border-background/30" required />
                 </div>
                 <div class="space-y-2">
                     <Label for="apellido" class="font-semibold">Apellido</Label>
-                    <Input id="apellido" v-model="formData.apellido" class="bg-foreground text-background border-background/30" required />
+                    <Input id="apellido" v-model="formData.apellido" class="theme-invert border-background/30" required />
                 </div>
                 </div>
                     
                 <div class="space-y-2">
                 <Label for="email" class="font-semibold">Email</Label>
-                <Input id="email" type="email" v-model="formData.email" class="bg-foreground text-background border-background/30" required />
+                <Input id="email" type="email" v-model="formData.email" class="theme-invert border-background/30" required />
                 </div>
 
                 <div class="space-y-2">
                 <Label class="font-semibold">Tipo de Proyecto</Label>
                 <Select v-model="formData.tipoProyecto" required>
-                    <SelectTrigger class="bg-foreground text-background border-background/30">
+                    <SelectTrigger class="theme-invert border-background/30">
                     <SelectValue placeholder="Selecciona una opción" />
                     </SelectTrigger>
-                    <SelectContent class="bg-foreground text-background border-background">
+                    <SelectContent class="theme-invert border-background">
                     <SelectItem value="ilustracion">Ilustración Personalizada</SelectItem>
                     <SelectItem value="branding">Identidad Visual / Branding</SelectItem>
                     <SelectItem value="web">Diseño Web / UI</SelectItem>
@@ -60,7 +60,7 @@
                 <Label class="font-semibold">Fecha estimada</Label>
                 <Popover>
                     <PopoverTrigger as-child>
-                    <Button variant="outline" class="w-full justify-start text-left bg-foreground text-background border-background/30">
+                    <Button variant="outline" class="w-full justify-start text-left theme-invert border-background/30">
                         <span v-if="dies">{{ dies.day }}/{{ dies.month }}/{{ dies.year }}</span>
                         <span v-else>Selecciona una fecha</span>
                     </Button>
@@ -71,7 +71,7 @@
                 </Popover>
                 </div>
 
-                <Button type="submit" class="w-full bg-background text-foreground hover:opacity-90 transition-all font-bold py-6">
+                <Button type="submit" class="w-full theme-base hover:opacity-90 transition-all font-bold py-6">
                 Enviar Solicitud
                 </Button>
             </form>

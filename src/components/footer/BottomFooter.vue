@@ -1,7 +1,7 @@
 <template>
     <footer class="w-full transition-colors duration-300">
         
-        <div class="bg-background text-foreground py-16 border-t border-foreground/10">
+        <div class="theme-base py-16 border-t border-foreground/10">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row md:justify-around gap-12">
 
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="w-full bg-foreground text-background py-6 transition-colors duration-300">
+        <div class="w-full theme-invert py-6 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-6 text-center text-sm font-bold uppercase tracking-tighter opacity-80">
                 <p>© {{ new Date().getFullYear() }} MENCÍA LI. Todos los derechos reservados.</p>
             </div>

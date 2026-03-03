@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 left-0 w-full bg-foreground text-background shadow-md z-50 transition-colors duration-300">
+  <div class="fixed top-0 left-0 w-full theme-invert shadow-md z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
       <div

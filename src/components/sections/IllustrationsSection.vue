@@ -1,5 +1,5 @@
 <template>
-    <section class="min-h-screen bg-background text-foreground px-6 py-20 transition-colors duration-300">
+    <section class="min-h-screen theme-base px-6 py-20 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center uppercase tracking-widest">
             Mis Ilustraciones
