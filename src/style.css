@@ -96,4 +96,32 @@
   .modal-overlay {
     @apply fixed inset-0 z-50 bg-background/90 backdrop-blur-md flex items-center justify-center p-4;
   }
+
+  /* Secciones invertidas (fondo foreground, texto background) */
+  .section-invert {
+    @apply bg-foreground text-background;
+  }
+
+  /* Botón tipo “volver / ghost” */
+  .btn-ghost {
+    @apply bg-background text-foreground px-4 py-2 rounded-md hover:opacity-80 transition-all cursor-pointer active:scale-95;
+  }
+
+  /* Cards del accordion */
+  .accordion-trigger-card {
+    @apply w-full bg-background text-foreground p-6 rounded-md font-medium shadow-md hover:opacity-90 transition-all no-underline hover:no-underline flex justify-center text-center leading-tight uppercase tracking-wide;
+  }
+
+  /* Skills bar */
+  .skill-track {
+    @apply w-full bg-background/20 h-1.5 rounded-full overflow-hidden;
+  }
+  .skill-fill {
+    @apply bg-background h-full transition-all duration-1000 ease-out;
+  }
+
+  /* Texto largo consistente */
+  .prose-about {
+    @apply space-y-6 text-base md:text-lg leading-relaxed text-justify;
+  }
 }
