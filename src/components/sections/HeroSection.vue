@@ -1,9 +1,9 @@
 <template>
-    <section class="min-h-screen flex items-center justify-center">
+    <section class="min-h-screen flex items-center justify-center theme-base">
         <div class="section-container w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
             <div class="flex justify-center">
-                <div class="w-72 md:w-96 aspect-square bg-foreground rounded-md shadow-lg"></div>
+                <div class="w-72 md:w-96 aspect-square theme-invert rounded-md shadow-lg"></div>
             </div>
 
             <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6">
@@ -21,7 +21,7 @@
                 </p>
 
                 <div class="w-full flex justify-center md:justify-start">
-                    <button @click="goToAbout" class="btn-primary">
+                    <button @click="goToAbout" class="theme-invert btn-primary">
                         ¡Cuéntame más!
                     </button>
                 </div>

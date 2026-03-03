@@ -1,9 +1,9 @@
 <template>
-    <section class="min-h-screen section-invert relative">
+    <section class="min-h-screen section-invert relative theme-invert">
         <!-- Botón fijo (te acompaña al hacer scroll) -->
         <button
         @click="goBack"
-        class="btn-ghost fixed top-22 left-6 z-50"
+        class="theme-base btn-ghost fixed top-22 left-6 z-50"
         aria-label="Volver a inicio"
         >
         ← Volver
@@ -85,7 +85,7 @@
                     :value="`item-${index}`"
                     class="border-none"
                     >
-                    <AccordionTrigger class="accordion-trigger-card">
+                    <AccordionTrigger class="theme-base accordion-trigger-card">
                         {{ group.title }}
                     </AccordionTrigger>
 
