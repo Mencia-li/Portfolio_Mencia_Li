@@ -10,6 +10,9 @@ export function useHeroCarousel() {
     // Configuración básica para que el carrusel sea infinito
     const carouselOptions = {
         loop: true,
+        // Define la velocidad de la animación de transición (en ms). 
+        // Un valor de 30 hace que el deslizamiento sea más suave y fluido.
+        duration: 25, 
     }
 
     return {

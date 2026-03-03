@@ -12,13 +12,17 @@
                         <div class="space-y-4 opacity-90 font-medium">
                             <p class="flex items-center gap-3 justify-center md:justify-start hover:opacity-100 transition-opacity">
                                 <Mail class="w-5 h-5" />
-                                <a href="mailto:mcaljy@gmail.com" class="hover:underline">
+                                <a
+                                    href="mailto:mcaljy@gmail.com" 
+                                    class="hover:underline ">
                                     mcaljy@gmail.com
                                 </a>
                             </p>
                             <p class="flex items-center gap-3 justify-center md:justify-start">
                                 <MapPin class="w-5 h-5" />
-                                <span>Valencia, Valencia, ES</span>
+                                <span>
+                                    Valencia, Valencia, ES
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -33,7 +37,7 @@
                                 href="https://www.instagram.com/mencia_li" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="Instagram"
                             >
                                 <img 
@@ -47,7 +51,7 @@
                                 href="https://www.tiktok.com/@mencia_li" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="TikTok"
                             >
                                 <img 
@@ -61,7 +65,7 @@
                                 href="https://www.youtube.com/@mencia_li" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="YouTube"
                             >
                                 <img 
@@ -75,7 +79,7 @@
                                 href="https://www.linkedin.com/in/jiayi-li-998177372/" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                class="hover:scale-110 transition-transform hover:opacity-70" 
+                                class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="LinkedIn"
                             >
                                 <img 
