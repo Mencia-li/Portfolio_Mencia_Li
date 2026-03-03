@@ -1,5 +1,5 @@
 <template>
-    <section class="min-h-screen section-invert relative theme-invert">
+    <section class="min-h-screen relative theme-invert">
         <!-- Botón fijo (te acompaña al hacer scroll) -->
         <button
         @click="goBack"
@@ -12,12 +12,12 @@
         <div class="section-container space-y-16">
             <header class="text-center">
                 <h1 class="section-title mb-6">Sobre mí</h1>
-                <p class="max-w-2xl mx-auto text-lg font-medium opacity-90">
+                <p class="max-w-3xl mx-auto text-lg font-medium opacity-90">
                 Diseño, ilustración y el camino de convertir una pasión en una forma de comunicar.
                 </p>
             </header>
 
-            <div class="max-w-3xl mx-auto prose-about">
+            <div class="max-w-5xl mx-auto prose-about">
                 <p>
                 Estoy cursando el grado de <strong>Diseño y Tecnologías Creativas en la UPV</strong> y actualmente estoy en segundo de
                 carrera. Desde pequeña he tenido una relación muy natural con el dibujo: pasaba las tardes en el local de mis padres
@@ -66,11 +66,30 @@
                 </p>
             </div>
 
-            <section class="max-w-3xl mx-auto">
+            <section class="max-w-5xl mx-auto">
                 <h2 class="text-2xl font-semibold mb-4 border-b border-background/20 pb-2">Estudios</h2>
                 <ul class="space-y-2">
-                <li>• Grado en Diseño y Tecnologías Creativas (UPV) - En curso</li>
-                <li>• Bachillerato de Artes - Nota Media: MH</li>
+                    <li>
+                        <span>• Grado en Diseño y Tecnologías Creativas - En curso</span>
+                        <span class="block pl-3 mt-1 text-sm">
+                            Universidad Politécnica de Valencia
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>• Bachillerato de Artes - Nota Media: MH</span>
+                        <span class="block pl-3 mt-1 text-sm">
+                            IES 26
+                        </span>
+                    </li>
+
+                    <li>
+                        <span>• Educación Secundaria Obligatorio - Nota Media: 9.3</span>
+                        <span class="block pl-3 mt-1 text-sm">
+                            IES Malilla
+                        </span>
+                    </li>
+
                 </ul>
             </section>
 
