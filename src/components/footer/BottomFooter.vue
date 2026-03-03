@@ -36,7 +36,11 @@
                                 class="hover:scale-110 transition-transform hover:opacity-70" 
                                 aria-label="Instagram"
                             >
-                                <Instagram class="w-8 h-8" />
+                                <img 
+                                    src="/img/logos/instagram_logo.svg" 
+                                    class="w-8 h-8" 
+                                    alt="Instagram" 
+                                />
                             </a>
 
                             <a 
@@ -46,7 +50,11 @@
                                 class="hover:scale-110 transition-transform hover:opacity-70" 
                                 aria-label="TikTok"
                             >
-                                <Music2 class="w-8 h-8" />
+                                <img 
+                                    src="/img/logos/tiktok_logo.svg" 
+                                    class="w-8 h-8" 
+                                    alt="TikTok" 
+                                />
                             </a>
 
                             <a 
@@ -56,7 +64,11 @@
                                 class="hover:scale-110 transition-transform hover:opacity-70" 
                                 aria-label="YouTube"
                             >
-                                <Youtube class="w-8 h-8" />
+                                <img 
+                                    src="/img/logos/youtube_logo.svg" 
+                                    class="w-8 h-8" 
+                                    alt="YouTube" 
+                                />
                             </a>
 
                             <a 
@@ -66,7 +78,11 @@
                                 class="hover:scale-110 transition-transform hover:opacity-70" 
                                 aria-label="LinkedIn"
                             >
-                                <Linkedin class="w-8 h-8" />
+                                <img 
+                                    src="/img/logos/linkedin_logo.svg" 
+                                    class="w-8 h-8" 
+                                    alt="LinkedIn" 
+                                />
                             </a>
                         </div>
                     </div>
@@ -85,10 +101,6 @@
 <script setup lang="ts">
 import { 
     Mail, 
-    MapPin, 
-    Instagram, 
-    Linkedin, 
-    Youtube, 
-    Music2 
+    MapPin
 } from 'lucide-vue-next';
 </script>

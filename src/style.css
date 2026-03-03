@@ -81,8 +81,8 @@ html {
   --sidebar-ring: oklch(0.708 0 0);
 
   /* ✅ PALETA 1 (Predeterminada) */
-  --background: #BCA1DB;  /* Morado */
-  --foreground: #F7F2ED;  /* Blanco cálido */
+  --background: #828f59;  /* Matcha */
+  --foreground: #F0EFE4;  /* Blanco */
 }
 
 /* ✅ PALETA 2 */
@@ -93,8 +93,8 @@ html {
 
 /* ✅ PALETA 3 */
 [data-theme="palette-3"] {
-  --background: #828f59;  /* Matcha */
-  --foreground: #F0EFE4;  /* Rosa */
+  --background: #BCA1DB;  /* Morado */
+  --foreground: #F7F2ED;  /* Blanco cálido */
 }
 
 .dark {

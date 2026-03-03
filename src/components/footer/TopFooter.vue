@@ -46,9 +46,9 @@
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" class="bg-foreground border-background text-background">
-            <DropdownMenuItem @click="setTheme('palette-1')" class="cursor-pointer hover:bg-background/10!">Paleta - Lavanda</DropdownMenuItem>
+            <DropdownMenuItem @click="setTheme('palette-1')" class="cursor-pointer hover:bg-background/10!">Paleta - Matcha</DropdownMenuItem>
             <DropdownMenuItem @click="setTheme('palette-2')" class="cursor-pointer hover:bg-background/10!">Paleta - Solar</DropdownMenuItem>
-            <DropdownMenuItem @click="setTheme('palette-3')" class="cursor-pointer hover:bg-background/10!">Paleta - Matcha</DropdownMenuItem>
+            <DropdownMenuItem @click="setTheme('palette-3')" class="cursor-pointer hover:bg-background/10!">Paleta - Lavanda</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
