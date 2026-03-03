@@ -2,7 +2,7 @@
     <section class="min-h-screen flex items-center justify-center theme-base">
         <div class="section-container w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            <div class="flex justify-start order-2 md:order-1">
+            <div class="flex justify-start order-1 md:order-1">
                 <div class="w-full aspect-square theme-invert rounded-md shadow-2xl overflow-hidden border border-foreground/10">
                     <Carousel 
                         ref="carouselRef"
@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 order-1 md:order-2 md:pl-20">
+            <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 order-2 md:order-2 md:pl-20">
                 <h1 class="hero-title text-5xl md:text-7xl">
                     ¡Hola! Soy Mencía
                 </h1>
