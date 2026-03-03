@@ -11,18 +11,21 @@
             :key="cat.id"
             type="button"
             @click="openGallery(cat)"
-            class="group relative aspect-square bg-background rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all hover:ring-2 hover:ring-primary/50 hover:scale-[1.02] text-left"
+            class="group relative aspect-square bg-background rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all hover:ring-2 hover:ring-primary/50 hover:scale-[1.02] text-left
+                    w-full max-w-[320px] sm:max-w-none mx-auto"
             >
             <img
                 v-if="cat.images?.[0]"
                 :src="imgUrl(cat, cat.images[0])"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 :alt="cat.title"
                 loading="lazy"
             />
-            
-            <div class="absolute inset-0 flex items-center justify-center bg-foreground/85 group-hover:bg-foreground/20 transition-all duration-500 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                <span class="text-background font-bold text-xl uppercase tracking-widest transition-opacity group-hover:opacity-0">
+
+            <div
+                class="absolute inset-0 flex items-center justify-center bg-foreground/85 group-hover:bg-foreground/20 transition-all duration-500 backdrop-blur-[2px] group-hover:backdrop-blur-none"
+            >
+                <span class="text-background font-bold text-xl uppercase tracking-widest transition-opacity group-hover:opacity-0 px-4 text-center">
                 {{ cat.title }}
                 </span>
             </div>
@@ -57,26 +60,25 @@
             </Button>
 
             <div class="relative max-w-5xl w-full h-full flex flex-col items-center justify-center p-4" @click.stop>
-                <div class="relative group">
-                    <img
-                    v-if="currentImageUrl"
-                    :key="currentIndex"
-                    :src="currentImageUrl"
-                    class="max-w-full max-h-[75vh] object-contain shadow-2xl rounded-lg border border-border/50 animate-in fade-in zoom-in-95 duration-300"
-                    :alt="selectedImageAlt"
-                    />
-                </div>
+            <div class="relative group">
+                <img
+                v-if="currentImageUrl"
+                :key="currentIndex"
+                :src="currentImageUrl"
+                class="max-w-full max-h-[75vh] object-contain shadow-2xl rounded-lg border border-border/50 animate-in fade-in zoom-in-95 duration-300"
+                :alt="selectedImageAlt"
+                />
+            </div>
 
-                <div class="mt-8 px-6 py-2 bg-muted/50 backdrop-blur-sm rounded-full border border-border">
+            <div class="mt-8 px-6 py-2 bg-muted/50 backdrop-blur-sm rounded-full border border-border">
                 <p class="text-xs md:text-sm font-medium tracking-[0.2em] uppercase">
-                    <span class="text-background font-bold">{{ selectedCat?.title }}</span> 
-                    
-                    <span class="mx-3 opacity-30 text-foreground">|</span>
-                    <span class="text-foreground">
+                <span class="text-background font-bold">{{ selectedCat?.title }}</span>
+                <span class="mx-3 opacity-30 text-foreground">|</span>
+                <span class="text-foreground">
                     {{ currentIndex + 1 }} / {{ selectedCat?.images?.length ?? 0 }}
-                    </span>
+                </span>
                 </p>
-                </div>
+            </div>
             </div>
 
             <Button
@@ -99,29 +101,26 @@ import { illustrationCategories } from "@/data/illustrations";
 import { Button } from "@/components/ui/button";
 import { useGallery } from "@/composables/useGallery";
 
-const { 
-    isOpen, 
-    selectedCat, 
-    currentIndex, 
-    currentImageUrl, 
-    selectedImageAlt, 
-    hasMany, 
-    openGallery, 
-    closeGallery, 
-    next, 
-    prev, 
-    imgUrl 
+const {
+    isOpen,
+    selectedCat,
+    currentIndex,
+    currentImageUrl,
+    selectedImageAlt,
+    hasMany,
+    openGallery,
+    closeGallery,
+    next,
+    prev,
+    imgUrl
 } = useGallery();
 </script>
 
 <style scoped>
-/* ✅ Animación optimizada para evitar el lag al cerrar */
 .fade-enter-active,
 .fade-leave-active {
-    /* Animamos solo la opacidad para que la GPU no sufra con el desenfoque */
     transition: opacity 0.2s ease-in-out;
 }
-
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
