@@ -68,7 +68,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from "vue"
 import { useNavigation } from "@/composables/useNavigation"
-import { useHeroCarousel } from "@/composables/useHeroCarousel"
+import { useHeroCarousel } from "@/pages/01_home/useHeroCarousel"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import type { CarouselApi } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"

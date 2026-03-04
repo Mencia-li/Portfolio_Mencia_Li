@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router"
-import Home from "@/pages/home/Home.vue"
-import SobreMi from "@/pages/SobreMi.vue"
-import Projects from "@/pages/Projects.vue"
-import ProjectDetail from "@/pages/ProjectDetail.vue"
+import Home from "@/pages/01_home/Home.vue"
+import SobreMi from "@/pages/01_home/0_about/SobreMi.vue"
+import Projects from "@/pages/02_projects/Projects.vue"
+import ProjectDetail from "@/pages/02_projects/ProjectDetail.vue"
 
 export const router = createRouter({
   // Mantenemos el modo Hash para compatibilidad con hosting gratuito

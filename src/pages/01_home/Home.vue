@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import HeroSection from "@/components/sections/HeroSection.vue"
-import ProjectsSection from "@/components/sections/ProjectsSection.vue"
-import IllustrationsSection from "@/components/sections/IllustrationsSection.vue"
-import ContactSection from "@/components/sections/ContactSection.vue"
+import HeroSection from "@/pages/01_home/HeroSection.vue"
+import ProjectsSection from "@/pages/02_projects/ProjectsSection.vue"
+import IllustrationsSection from "@/pages/03_illustrations/IllustrationsSection.vue"
+import ContactSection from "@/pages/04_contact/ContactSection.vue"
 </script>

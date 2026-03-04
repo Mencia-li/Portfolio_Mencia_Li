@@ -1,6 +1,6 @@
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
-import { projects as projectsData, type Project } from "@/data/projects"
+import { projects as projectsData, type Project } from "@/pages/02_projects/projects_data"
 
 export function useProjects() {
     const router = useRouter()

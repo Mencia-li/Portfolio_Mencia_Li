@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import { X, ArrowRight } from "lucide-vue-next"
-import { useProjects } from "@/composables/useProjects"
+import { useProjects } from "@/pages/02_projects/useProjects"
 import { Button } from "@/components/ui/button"
 
 // Extraemos las funciones y estados necesarios del composable

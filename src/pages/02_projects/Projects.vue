@@ -12,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-import ProjectsSection from "@/components/sections/ProjectsSection.vue"
+import ProjectsSection from "@/pages/02_projects/ProjectsSection.vue"
 </script>

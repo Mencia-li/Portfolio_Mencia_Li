@@ -102,9 +102,9 @@
 
 <script setup lang="ts">
 import { X, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import { illustrationCategories } from "@/data/illustrations";
+import { illustrationCategories } from "@/pages/03_illustrations/illustrations.data";
 import { Button } from "@/components/ui/button";
-import { useGallery } from "@/composables/useGallery";
+import { useGallery } from "@/pages/03_illustrations/useGallery";
 
 const {
     isOpen,

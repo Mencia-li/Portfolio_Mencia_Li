@@ -190,7 +190,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onUnmounted } from "vue"
 import { useRoute } from "vue-router"
-import { useProjects } from "@/composables/useProjects"
+import { useProjects } from "@/pages/02_projects/useProjects"
 import { X, ChevronLeft, ChevronRight } from "lucide-vue-next"
 import { Button } from "@/components/ui/button"
 
