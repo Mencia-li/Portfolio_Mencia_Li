@@ -124,143 +124,45 @@
         <button @click="goBack" class="underline font-bold cursor-pointer">Volver al inicio</button>
         </div>
 
-        <Teleport to="body">
-        <Transition name="fade">
-            <div
-            v-if="isOpen && project"
-            class="modal-overlay z-100 sm:p-10"
-            role="dialog"
-            @click="closeGallery"
-            >
-            <Button
-                variant="ghost"
-                size="icon"
-                class="absolute top-6 right-6 text-foreground/70 hover:text-foreground z-50 rounded-full h-12 w-12 cursor-pointer"
-                @click="closeGallery"
-            >
-                <X class="h-8 w-8" />
-            </Button>
-
-            <Button
-                v-if="hasMany"
-                variant="outline"
-                size="icon"
-                class="absolute left-4 md:left-10 bg-background/50 border-primary/20 hover:bg-primary hover:text-primary-foreground hidden sm:flex h-14 w-14 rounded-full cursor-pointer"
-                @click.stop="prev"
-            >
-                <ChevronLeft class="h-10 w-10" />
-            </Button>
-
-            <div class="relative max-w-full max-h-full flex flex-col items-center justify-center" @click.stop>
-                <div class="relative group">
-                <img
-                    :key="currentIndex"
-                    :src="currentImageUrl"
-                    class="max-w-full max-h-[80vh] object-contain shadow-2xl rounded-lg border border-border/50 animate-in fade-in zoom-in-95 duration-300"
-                    :alt="project.title"
-                />
-                </div>
-
-                <div class="mt-6 px-6 py-2 bg-muted/50 backdrop-blur-sm rounded-full border border-border">
-                <p class="text-xs md:text-sm font-medium tracking-[0.2em] uppercase">
-                    <span class="text-foreground font-bold">{{ project.title }}</span>
-                    <span class="mx-3 opacity-30 text-foreground">|</span>
-                    <span class="text-foreground">
-                    {{ currentIndex + 1 }} / {{ project.images.length }}
-                    </span>
-                </p>
-                </div>
-            </div>
-
-            <Button
-                v-if="hasMany"
-                variant="outline"
-                size="icon"
-                class="absolute right-4 md:right-10 bg-background/50 border-primary/20 hover:bg-primary hover:text-primary-foreground hidden sm:flex h-14 w-14 rounded-full cursor-pointer"
-                @click.stop="next"
-            >
-                <ChevronRight class="h-10 w-10" />
-            </Button>
-            </div>
-        </Transition>
-        </Teleport>
+        <ModalCarousel
+            :is-open="isOpen"
+            :images="images"
+            :initial-index="initialIndex"
+            :title="title"
+            @close="closeLightbox"
+        />
     </section>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, onMounted, onUnmounted } from "vue"
+import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useProjects } from "@/pages/02_projects/useProjects"
-import { X, ChevronLeft, ChevronRight } from "lucide-vue-next"
-import { Button } from "@/components/ui/button"
+import ModalCarousel from "@/components/layout/ModalCarousel.vue"
+import { useLightbox } from "@/composables/useLightbox"
 
 const route = useRoute()
 const { getProjectById, goBack } = useProjects()
+const { isOpen, images, initialIndex, title, openLightbox, closeLightbox } = useLightbox()
 
 const project = computed(() => getProjectById(route.params.id as string))
 
-const isOpen = ref(false)
-const currentIndex = ref(0)
-
 const openGallery = (index: number) => {
-    currentIndex.value = index
-    isOpen.value = true
+    if (!project.value) return;
+
+    // Mapeamos las imágenes del proyecto al formato estandarizado { url, alt }
+    const formattedImages = project.value.images.map(img => ({
+        url: `/img/projects/${project.value!.folder}/${img}`,
+        alt: project.value!.title
+    }));
+    
+    // Abrimos el Lightbox en la imagen exacta que el usuario clicó
+    openLightbox(formattedImages, index, project.value.title);
 }
-
-const closeGallery = () => {
-    isOpen.value = false
-}
-
-const hasMany = computed(() => (project.value?.images?.length ?? 0) > 1)
-
-const next = () => {
-    const len = project.value?.images?.length ?? 0
-    if (!len) return
-    currentIndex.value = (currentIndex.value + 1) % len
-}
-
-const prev = () => {
-    const len = project.value?.images?.length ?? 0
-    if (!len) return
-    currentIndex.value = (currentIndex.value - 1 + len) % len
-}
-
-const currentImageUrl = computed(() => {
-    if (!project.value) return ""
-    return `/img/projects/${project.value.folder}/${project.value.images[currentIndex.value]}`
-})
-
-watch(isOpen, (open) => {
-    document.body.style.overflow = open ? "hidden" : "auto"
-})
-
-const handleKey = (e: KeyboardEvent) => {
-    if (!isOpen.value) return
-    if (e.key === "Escape") closeGallery()
-    if (e.key === "ArrowRight") next()
-    if (e.key === "ArrowLeft") prev()
-}
-
-onMounted(() => window.addEventListener("keydown", handleKey))
-onUnmounted(() => {
-    window.removeEventListener("keydown", handleKey)
-    document.body.style.overflow = "auto"
-})
 </script>
-
 
 <style scoped>
 .animate-in {
     animation-fill-mode: forwards;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
 }
 </style>
