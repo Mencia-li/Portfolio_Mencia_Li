@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div v-if="allProjects.length > 6" class="text-center mt-12">
+        <div v-if="shouldShowButton" class="text-center mt-12">
             <button
             @click="showAll = !showAll"
             class="theme-base px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
@@ -112,12 +112,12 @@ import { X, ArrowRight } from "lucide-vue-next"
 import { useProjects } from "@/pages/02_projects/useProjects"
 import { Button } from "@/components/ui/button"
 
-// Extraemos las funciones y estados necesarios del composable
+// Extraemos las funciones y estados necesarios del composable, incluyendo shouldShowButton
 const { 
     visibleProjects, 
     showAll, 
-    allProjects, 
     selectedProject, 
+    shouldShowButton,
     openPreview, 
     closePreview, 
     goToProject 
