@@ -1,7 +1,7 @@
 <template>
-    <section class="min-h-screen theme-base px-6 py-20 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center uppercase tracking-widest">
+    <section class="min-h-screen theme-base section-container transition-colors duration-300">
+        <div>
+        <h2 class="section-title">
             Mis Ilustraciones
         </h2>
 
@@ -25,7 +25,9 @@
             <div
                 class="absolute inset-0 flex items-center justify-center bg-foreground/85 group-hover:bg-foreground/20 transition-all duration-500 backdrop-blur-[2px] group-hover:backdrop-blur-none"
             >
-                <span class="text-background font-bold text-xl uppercase tracking-widest transition-opacity group-hover:opacity-0 px-4 text-center">
+                <span
+                class="text-background font-bold text-xl uppercase tracking-widest transition-opacity group-hover:opacity-0 px-4 text-center"
+                >
                 {{ cat.title }}
                 </span>
             </div>
@@ -36,7 +38,7 @@
         <Transition name="fade">
         <div
             v-if="isOpen"
-            class="fixed inset-0 z-50 bg-background/90 backdrop-blur-md flex items-center justify-center p-4"
+            class="modal-overlay"
             role="dialog"
             @click="closeGallery"
         >
@@ -59,7 +61,10 @@
             <ChevronLeft class="h-10 w-10" />
             </Button>
 
-            <div class="relative max-w-5xl w-full h-full flex flex-col items-center justify-center p-4" @click.stop>
+            <div
+            class="relative max-w-5xl w-full h-full flex flex-col items-center justify-center p-4"
+            @click.stop
+            >
             <div class="relative group">
                 <img
                 v-if="currentImageUrl"
