@@ -3,7 +3,6 @@ import { useRouter } from "vue-router"
 import { projects as projectsData, type Project } from "@/pages/02_projects/projects_data"
 import { useGridColumns } from "@/composables/useGridColumns"
 
-// 🔥 SACAMOS ESTAS VARIABLES FUERA PARA QUE SEAN GLOBALES Y PERSISTENTES 🔥
 const showAll = ref(false)
 const selectedProject = ref<Project | null>(null)
 
@@ -57,7 +56,6 @@ export function useProjects() {
         openPreview,
         closePreview,
         getProjectById,
-        goToProject,
-        goBack: () => router.back()
+        goToProject
     }
 }

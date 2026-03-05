@@ -6,30 +6,24 @@ export function useNavigation() {
 
     async function goToSection(id: string, isInstant: boolean = false): Promise<void> {
         
-        const executeScroll = () => {
+        if (route.path !== "/") {
+
+            await router.push({ path: "/", hash: `#${id}` })
+        } else {
+            // Si YA estamos en el Home (click en el Header), hacemos el scroll a mano
             const el = document.getElementById(id)
             if (el) {
                 if (isInstant) {
-                    // ⚡ "Apagamos" el scroll suave global del CSS temporalmente
                     document.documentElement.style.scrollBehavior = 'auto'
                     el.scrollIntoView({ behavior: 'auto', block: "start" })
                     
-                    // Lo volvemos a encender un instante después
                     setTimeout(() => {
                         document.documentElement.style.scrollBehavior = ''
                     }, 50)
                 } else {
-                    // Scroll suave normal para el menú superior
                     el.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
             }
-        }
-
-        if (route.path !== "/") {
-            await router.push("/")
-            setTimeout(executeScroll, 100)
-        } else {
-            executeScroll()
         }
     }
 

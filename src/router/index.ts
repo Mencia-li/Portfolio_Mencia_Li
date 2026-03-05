@@ -4,7 +4,7 @@ import Home from "@/pages/01_home/Home.vue"
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   
-  scrollBehavior(_to, _from, savedPosition) {
+  scrollBehavior(to, _from, savedPosition) {
     // 1. Apagamos el scroll suave de CSS temporalmente antes del salto
     document.documentElement.style.scrollBehavior = 'auto'
     
@@ -14,7 +14,15 @@ export const router = createRouter({
       document.documentElement.style.scrollBehavior = ''
     }, 50)
 
-    // 3. Devolvemos la posición guardada (si existe) o el top 0
+    // 3. ✨ LA MAGIA: Si hay un hash (ej. #proyectos), Vue Router salta directo sin que se vea el Home
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'auto' // Salto instantáneo nativo del router
+      }
+    }
+
+    // 4. Devolvemos la posición guardada (si existe) o el top 0
     if (savedPosition) {
       return savedPosition
     }
@@ -31,11 +39,6 @@ export const router = createRouter({
       path: "/sobre-mi",
       name: "sobre-mi",
       component: () => import("@/pages/01_home/0_about/SobreMi.vue"),
-    },
-    {
-      path: "/proyectos",
-      name: "projects-list",
-      component: () => import("@/pages/02_projects/Projects.vue"),
     },
     {
       path: "/proyectos/:id",
