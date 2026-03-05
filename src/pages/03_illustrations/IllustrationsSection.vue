@@ -20,7 +20,8 @@
 
             <div v-if="shouldShowButton" class="text-center mt-16">
                 <button
-                    @click="showAll = !showAll"
+                    ref="toggleBtn"
+                    @click="handleToggle"
                     class="theme-invert px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
                 >
                     {{ showAll ? 'Ver menos' : 'Ver más ilustraciones' }}
@@ -39,9 +40,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref, nextTick } from "vue" // <-- Añadir importaciones
 import { useIllustrations } from "./useIllustrations"
 import ModalCarousel from "@/components/layout/ModalCarousel.vue"
-// 👇 Importamos desde layout
 import StackedCards from "@/components/layout/StackedCards.vue" 
 import type { IllustrationCategory } from "./illustrations.data"
 
@@ -63,5 +64,30 @@ const getFormattedImages = (cat: IllustrationCategory) => {
         url: imgUrl(cat, img),
         alt: img.alt || cat.title
     }));
+}
+
+const toggleBtn = ref<HTMLButtonElement | null>(null)
+
+const handleToggle = async () => {
+    if (!showAll.value) {
+        showAll.value = true
+        return
+    }
+
+    const btn = toggleBtn.value
+    if (!btn) return
+
+    const oldTop = btn.getBoundingClientRect().top
+    showAll.value = false
+
+    await nextTick()
+
+    const newTop = btn.getBoundingClientRect().top
+    const html = document.documentElement
+    html.style.scrollBehavior = 'auto'
+    
+    window.scrollBy(0, newTop - oldTop)
+    
+    html.style.scrollBehavior = ''
 }
 </script>

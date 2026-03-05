@@ -21,6 +21,7 @@
                     :alt="img.alt" 
                     class="max-w-full max-h-[75vh] object-contain shadow-2xl rounded-lg border border-border/50 select-none animate-in fade-in zoom-in-95 duration-300" 
                     loading="lazy"
+                    decoding="async"
                     />
                 </CarouselItem>
                 </CarouselContent>

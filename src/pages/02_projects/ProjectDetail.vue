@@ -27,6 +27,7 @@
                 :src="`/img/projects/${project.folder}/${project.cover}`"
                 :alt="project.title"
                 class="w-full h-full object-cover"
+                decoding="async"
             />
             </div>
 
@@ -74,6 +75,7 @@
                         :src="`/img/projects/${project.folder}/${img}`"
                         class="w-full rounded-xl shadow-md border border-foreground/5 group-hover:scale-[1.03] transition-transform duration-300"
                         loading="lazy"
+                        decoding="async"
                     />
                     </button>
                 </div>
