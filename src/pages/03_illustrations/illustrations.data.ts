@@ -28,7 +28,7 @@ export interface IllustrationCategory {
         id: 2,
         title: "Académico",
         folder: "academico",
-        images: makeImages("acad", 12), // OJO: tus archivos son acad1.jpg..acad12.jpg
+        images: makeImages("acad", 12), // acad1..acad12
     },
     {
         id: 3,
