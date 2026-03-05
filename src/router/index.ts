@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Home from "@/pages/01_home/Home.vue"
-import SobreMi from "@/pages/01_home/0_about/SobreMi.vue"
-import Projects from "@/pages/02_projects/Projects.vue"
-import ProjectDetail from "@/pages/02_projects/ProjectDetail.vue"
+// Ya no importamos SobreMi, Projects y ProjectDetail aquí arriba
+// para aprovechar el Lazy Loading.
 
 export const router = createRouter({
   // Mantenemos el modo Hash para compatibilidad con hosting gratuito
@@ -24,36 +23,36 @@ export const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: Home, // El Home sí se carga inmediatamente
     },
     {
       path: "/sobre-mi",
       name: "sobre-mi",
-      component: SobreMi,
+      // Lazy loading: solo se descarga el código cuando el usuario visita la ruta
+      component: () => import("@/pages/01_home/0_about/SobreMi.vue"),
     },
 
     // Rutas para proyectos
     {
       path: "/proyectos",
       name: "projects-list",
-      component: Projects,
+      component: () => import("@/pages/02_projects/Projects.vue"),
     },
     
     /** * ✅ Cambio clave: 
      * Definimos el detalle como una ruta independiente. 
-     * Esto permite que se renderice reemplazando la vista actual 
-     * en lugar de intentar renderizarse dentro de la página de Proyectos.
      */
     {
       path: "/proyectos/:id",
       name: "project-detail",
-      component: ProjectDetail,
+      component: () => import("@/pages/02_projects/ProjectDetail.vue"),
       props: true,
     },
 
-    // Redirección por defecto
+    // ✅ Corregido: Redirección por defecto (Catch-All para Vue Router 4)
+    // Era: /:patchMatch(.*) -> Ahora es: /:pathMatch(.*)*
     {
-      path: "/:patchMatch(.*)",
+      path: "/:pathMatch(.*)*",
       redirect: "/",
     },
   ],

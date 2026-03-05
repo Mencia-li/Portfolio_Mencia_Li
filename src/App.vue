@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import TopFooter from '@/components/layout/TopFooter.vue'
+import Header from '@/components/layout/Header.vue'
 import BottomFooter from '@/components/layout/BottomFooter.vue'
 
 </script>
 
 <template>
-  <TopFooter />
+  <Header />
   <main class="pt-20">
     <RouterView />
   </main>

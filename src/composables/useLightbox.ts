@@ -1,5 +1,4 @@
-// src/composables/useLightbox.ts
-import { ref } from "vue"
+import { ref, onUnmounted } from "vue"
 
 export interface LightboxImage {
     url: string
@@ -10,13 +9,18 @@ export function useLightbox() {
     const isOpen = ref(false)
     const images = ref<LightboxImage[]>([])
     const initialIndex = ref(0)
-    const title = ref("") // <-- Nuevo
+    const title = ref("")
+    
+    // Guardamos la referencia del timeout para poder cancelarlo
+    let clearImagesTimeout: ReturnType<typeof setTimeout> | null = null
 
-    // <-- Añadido el 3er parámetro: galleryTitle
     const openLightbox = (imgList: LightboxImage[], startIndex = 0, galleryTitle = "") => {
+        // Si había un borrado pendiente, lo cancelamos
+        if (clearImagesTimeout) clearTimeout(clearImagesTimeout)
+            
         images.value = imgList
         initialIndex.value = startIndex
-        title.value = galleryTitle // <-- Guardamos el título
+        title.value = galleryTitle
         isOpen.value = true
         document.body.style.overflow = "hidden"
     }
@@ -24,14 +28,23 @@ export function useLightbox() {
     const closeLightbox = () => {
         isOpen.value = false
         document.body.style.overflow = "auto"
-        setTimeout(() => { images.value = [] }, 300)
+        clearImagesTimeout = setTimeout(() => { 
+            images.value = [] 
+        }, 300)
     }
+
+    // 🛡️ SEGURO DE VIDA: Si el componente se destruye (ej: botón atrás del navegador),
+    // nos aseguramos de devolver el scroll a la normalidad.
+    onUnmounted(() => {
+        document.body.style.overflow = "auto"
+        if (clearImagesTimeout) clearTimeout(clearImagesTimeout)
+    })
 
     return {
         isOpen,
         images,
         initialIndex,
-        title, // <-- Exportamos el título
+        title,
         openLightbox,
         closeLightbox
     }
