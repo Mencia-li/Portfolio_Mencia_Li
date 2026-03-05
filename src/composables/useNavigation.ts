@@ -5,12 +5,17 @@ export function useNavigation() {
     const route = useRoute()
 
     async function goToSection(id: string, isInstant: boolean = false): Promise<void> {
+        // Determinamos el hash destino: vacío para home, o #id para el resto
+        const targetHash = id === 'home' ? '' : `#${id}`
         
         if (route.path !== "/") {
-
-            await router.push({ path: "/", hash: `#${id}` })
+            // Si venimos de otra página, el router ya añade /#/#hash automáticamente
+            await router.push({ path: "/", hash: targetHash })
         } else {
-            // Si YA estamos en el Home (click en el Header), hacemos el scroll a mano
+            // ✨ ACTUALIZACIÓN: Forzamos el cambio de hash en la URL
+            // Usamos replace para no ensuciar el historial del navegador con cada scroll
+            router.replace({ path: "/", hash: targetHash }).catch(() => {})
+
             const el = document.getElementById(id)
             if (el) {
                 if (isInstant) {

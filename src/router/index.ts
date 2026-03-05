@@ -2,30 +2,41 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import Home from "@/pages/01_home/Home.vue"
 
 export const router = createRouter({
+  // Mantenemos WebHashHistory para usar el formato /#/...
   history: createWebHashHistory(import.meta.env.BASE_URL),
   
-  scrollBehavior(to, _from, savedPosition) {
-    // 1. Apagamos el scroll suave de CSS temporalmente antes del salto
-    document.documentElement.style.scrollBehavior = 'auto'
-    
-    // 2. Lo volvemos a encender un instante después para no perder 
-    // la navegación suave en los menús
-    setTimeout(() => {
-      document.documentElement.style.scrollBehavior = ''
-    }, 50)
-
-    // 3. ✨ LA MAGIA: Si hay un hash (ej. #proyectos), Vue Router salta directo sin que se vea el Home
-    if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'auto' // Salto instantáneo nativo del router
-      }
-    }
-
-    // 4. Devolvemos la posición guardada (si existe) o el top 0
+  scrollBehavior(to, from, savedPosition) {
+    // 1. Si el usuario usa los botones de atrás/adelante del navegador, 
+    // respetamos la posición guardada
     if (savedPosition) {
       return savedPosition
     }
+
+    // 2. ✨ EL AJUSTE IMPORTANTE:
+    // Si navegamos entre secciones de la MISMA página (ej: de #proyectos a #ilustraciones),
+    // NO queremos que este scrollBehavior interfiera, porque useNavigation ya hace 
+    // el scroll suave con scrollToElement.
+    if (to.path === from.path && to.hash) {
+      return false // Deja que useNavigation maneje el scroll
+    }
+
+    // 3. Si venimos de otra página (ej. /sobre-mi) y hay un hash,
+    // forzamos el salto instantáneo para evitar ver el inicio del Home
+    if (to.hash) {
+      // Apagamos el scroll suave global momentáneamente
+      document.documentElement.style.scrollBehavior = 'auto'
+      
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'smooth'
+      }, 50)
+
+      return {
+        el: to.hash,
+        behavior: 'auto' // Salto directo nativo
+      }
+    }
+
+    // 4. Por defecto, ir arriba
     return { top: 0 }
   },
   
@@ -38,6 +49,7 @@ export const router = createRouter({
     {
       path: "/sobre-mi",
       name: "sobre-mi",
+      // Lazy loading para mejorar la carga inicial
       component: () => import("@/pages/01_home/0_about/SobreMi.vue"),
     },
     {
