@@ -10,7 +10,7 @@
             <div class="relative max-w-5xl w-full h-full flex flex-col items-center justify-center p-4" @click.stop>
             
             <Carousel 
-                class="w-full" 
+                class="w-full sm:px-16 md:px-24" 
                 :opts="{ startIndex: initialIndex, loop: true }" 
                 @init-api="onInitApi"
             >
@@ -26,8 +26,8 @@
                 </CarouselItem>
                 </CarouselContent>
                 
-                <CarouselPrevious v-if="images.length > 1" class="hidden sm:flex h-14 w-14 absolute left-0 md:-left-12 bg-background/50 border-primary/20 hover:bg-primary hover:text-primary-foreground cursor-pointer" />
-                <CarouselNext v-if="images.length > 1" class="hidden sm:flex h-14 w-14 absolute right-0 md:-right-12 bg-background/50 border-primary/20 hover:bg-primary hover:text-primary-foreground cursor-pointer" />
+                <CarouselPrevious v-if="images.length > 1" class="hidden sm:flex h-12 w-12 md:h-14 md:w-14 absolute left-2 md:left-6 bg-background/50 backdrop-blur-md border-primary/20 hover:bg-primary hover:text-primary-foreground cursor-pointer" />
+                <CarouselNext v-if="images.length > 1" class="hidden sm:flex h-12 w-12 md:h-14 md:w-14 absolute right-2 md:right-6 bg-background/50 backdrop-blur-md border-primary/20 hover:bg-primary hover:text-primary-foreground cursor-pointer" />
             </Carousel>
 
             <div v-if="images.length > 1" class="mt-8 px-6 py-2 bg-muted/50 backdrop-blur-sm rounded-full border border-border z-10">
