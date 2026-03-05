@@ -109,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from "vue" // <-- Asegúrate de importar esto
+import { ref, nextTick, onMounted, onUnmounted } from "vue" // <-- Añadido onMounted y onUnmounted
 import { X, ArrowRight } from "lucide-vue-next"
 import { useProjects } from "@/pages/02_projects/useProjects"
 import { Button } from "@/components/ui/button"
@@ -124,41 +124,48 @@ const {
     goToProject 
 } = useProjects()
 
-// 👇 NUEVA LÓGICA DE ANCLAJE VISUAL 👇
+// --- LÓGICA DE CIERRE CON TECLA ESCAPE ---
+const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && selectedProject.value) {
+        closePreview()
+    }
+}
+
+onMounted(() => {
+    window.addEventListener('keydown', handleKeyDown)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleKeyDown)
+})
+// -----------------------------------------
+
 const toggleBtn = ref<HTMLButtonElement | null>(null)
 
 const handleToggle = async () => {
     if (!showAll.value) {
-        // Si vamos a expandir, no hay problema porque crece hacia abajo
         showAll.value = true
         return
     }
 
-    // Si vamos a contraer ("Ver menos"), guardamos la posición del botón
     const btn = toggleBtn.value
     if (!btn) return
 
-    // 1. Dónde está el botón ahora mismo respecto a la pantalla
     const oldTop = btn.getBoundingClientRect().top
-
-    // 2. Cambiamos el estado para que desaparezcan las tarjetas
     showAll.value = false
 
-    // 3. Esperamos un microsegundo a que Vue actualice el DOM visualmente
     await nextTick()
 
-    // 4. Dónde ha acabado el botón tras el colapso
     const newTop = btn.getBoundingClientRect().top
-
-    // 5. Ajustamos la cámara (scroll) para que el botón se quede en el mismo sitio
     const html = document.documentElement
-    html.style.scrollBehavior = 'auto' // Apagamos el scroll suave un instante
+    html.style.scrollBehavior = 'auto'
     
     window.scrollBy(0, newTop - oldTop)
     
-    html.style.scrollBehavior = '' // Lo volvemos a encender
+    html.style.scrollBehavior = ''
 }
 </script>
+
 
 <style scoped>
 /* Animación del modal */

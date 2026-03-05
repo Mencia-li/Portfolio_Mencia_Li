@@ -4,11 +4,12 @@ import type { IllustrationCategory, IllustrationImage } from "./illustrations.da
 import { useLightbox } from "@/composables/useLightbox"
 import { useGridColumns } from "@/composables/useGridColumns"
 
+// 🔥 VARIABLE GLOBAL PARA MANTENER LA SECCIÓN DESPLEGADA 🔥
+const showAll = ref(false)
+
 export function useIllustrations() {
     // Integramos el lightbox dentro del composable de ilustraciones
     const lightbox = useLightbox()
-    
-    const showAll = ref(false)
     
     // --- DETECCIÓN DE COLUMNAS (Móvil, Tablet, PC) ---
     const { columns } = useGridColumns()

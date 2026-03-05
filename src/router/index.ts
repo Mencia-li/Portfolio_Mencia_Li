@@ -1,18 +1,20 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Home from "@/pages/01_home/Home.vue"
-// Ya no importamos SobreMi, Projects y ProjectDetail aquí arriba
-// para aprovechar el Lazy Loading.
 
 export const router = createRouter({
-  // Mantenemos el modo Hash para compatibilidad con hosting gratuito
   history: createWebHashHistory(import.meta.env.BASE_URL),
   
-  /**
-   * ✅ Scroll simple y limpio:
-   * Al cambiar de página, siempre volvemos arriba del todo.
-   * Eliminamos la lógica de 'to.hash' para evitar los errores de URL duplicada.
-   */
   scrollBehavior(_to, _from, savedPosition) {
+    // 1. Apagamos el scroll suave de CSS temporalmente antes del salto
+    document.documentElement.style.scrollBehavior = 'auto'
+    
+    // 2. Lo volvemos a encender un instante después para no perder 
+    // la navegación suave en los menús
+    setTimeout(() => {
+      document.documentElement.style.scrollBehavior = ''
+    }, 50)
+
+    // 3. Devolvemos la posición guardada (si existe) o el top 0
     if (savedPosition) {
       return savedPosition
     }
@@ -23,34 +25,24 @@ export const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Home, // El Home sí se carga inmediatamente
+      component: Home,
     },
     {
       path: "/sobre-mi",
       name: "sobre-mi",
-      // Lazy loading: solo se descarga el código cuando el usuario visita la ruta
       component: () => import("@/pages/01_home/0_about/SobreMi.vue"),
     },
-
-    // Rutas para proyectos
     {
       path: "/proyectos",
       name: "projects-list",
       component: () => import("@/pages/02_projects/Projects.vue"),
     },
-    
-    /** * ✅ Cambio clave: 
-     * Definimos el detalle como una ruta independiente. 
-     */
     {
       path: "/proyectos/:id",
       name: "project-detail",
       component: () => import("@/pages/02_projects/ProjectDetail.vue"),
       props: true,
     },
-
-    // ✅ Corregido: Redirección por defecto (Catch-All para Vue Router 4)
-    // Era: /:patchMatch(.*) -> Ahora es: /:pathMatch(.*)*
     {
       path: "/:pathMatch(.*)*",
       redirect: "/",
