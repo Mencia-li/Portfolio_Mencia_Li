@@ -1,30 +1,17 @@
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 import { illustrationCategories } from "./illustrations.data"
 import type { IllustrationCategory, IllustrationImage } from "./illustrations.data"
 import { useLightbox } from "@/composables/useLightbox"
+import { useGridColumns } from "@/composables/useGridColumns"
 
 export function useIllustrations() {
     // Integramos el lightbox dentro del composable de ilustraciones
     const lightbox = useLightbox()
     
     const showAll = ref(false)
-    const columns = ref(3)
-
-    // Lógica para detectar el número de columnas según el ancho de pantalla
-    const updateColumns = () => {
-        if (window.innerWidth >= 1024) columns.value = 3      // LG
-        else if (window.innerWidth >= 640) columns.value = 2 // SM
-        else columns.value = 1                               // XS
-    }
-
-    onMounted(() => {
-        updateColumns()
-        window.addEventListener('resize', updateColumns)
-    })
-
-    onUnmounted(() => {
-        window.removeEventListener('resize', updateColumns)
-    })
+    
+    // --- DETECCIÓN DE COLUMNAS (Móvil, Tablet, PC) ---
+    const { columns } = useGridColumns()
 
     // Límite de ventanas iniciales (según tu regla: 6, 4 o 3)
     const initialLimit = computed(() => {

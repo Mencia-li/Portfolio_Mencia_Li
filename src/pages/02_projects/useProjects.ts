@@ -1,25 +1,15 @@
-import { ref, computed, onMounted, onUnmounted } from "vue"
+import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { projects as projectsData, type Project } from "@/pages/02_projects/projects_data"
+import { useGridColumns } from "@/composables/useGridColumns"
 
 export function useProjects() {
     const router = useRouter()
     const showAll = ref(false)
     const selectedProject = ref<Project | null>(null)
 
-    // --- DETECCIÓN DE COLUMNAS ---
-    const columns = ref(3)
-    const updateColumns = () => {
-        if (window.innerWidth >= 1024) columns.value = 3      // LG: 3 columnas
-        else if (window.innerWidth >= 640) columns.value = 2 // SM: 2 columnas
-        else columns.value = 1                               // XS: 1 columna
-    }
-
-    onMounted(() => {
-        updateColumns()
-        window.addEventListener('resize', updateColumns)
-    })
-    onUnmounted(() => window.removeEventListener('resize', updateColumns))
+    // --- DETECCIÓN DE COLUMNAS (Móvil, Tablet, PC) ---
+    const { columns } = useGridColumns()
 
     // Límite inicial según tu regla de filas
     const initialLimit = computed(() => {
