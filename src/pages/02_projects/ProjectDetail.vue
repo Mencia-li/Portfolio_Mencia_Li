@@ -72,7 +72,7 @@
                     >
                     <img
                         :src="`/img/projects/${project.folder}/${img}`"
-                        class="w-full rounded-xl shadow-md border border-foreground/5 group-hover:scale-[1.02] transition-transform duration-300"
+                        class="w-full rounded-xl shadow-md border border-foreground/5 group-hover:scale-[1.03] transition-transform duration-300"
                         loading="lazy"
                     />
                     </button>
