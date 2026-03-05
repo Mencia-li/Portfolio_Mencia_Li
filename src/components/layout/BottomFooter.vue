@@ -40,11 +40,10 @@
                                 class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="Instagram"
                             >
-                                <img 
-                                    src="/img/logos/instagram_logo.svg" 
-                                    class="w-8 h-8" 
-                                    alt="Instagram" 
-                                />
+                                <div 
+                                    class="w-8 h-8 bg-foreground" 
+                                    style="mask: url('/img/logos/instagram_logo.svg') no-repeat center / contain; -webkit-mask: url('/img/logos/instagram_logo.svg') no-repeat center / contain;"
+                                ></div>
                             </a>
 
                             <a 
@@ -54,11 +53,10 @@
                                 class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="TikTok"
                             >
-                                <img 
-                                    src="/img/logos/tiktok_logo.svg" 
-                                    class="w-8 h-8" 
-                                    alt="TikTok" 
-                                />
+                                <div 
+                                    class="w-8 h-8 bg-foreground" 
+                                    style="mask: url('/img/logos/tiktok_logo.svg') no-repeat center / contain; -webkit-mask: url('/img/logos/tiktok_logo.svg') no-repeat center / contain;"
+                                ></div>
                             </a>
 
                             <a 
@@ -68,11 +66,10 @@
                                 class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="YouTube"
                             >
-                                <img 
-                                    src="/img/logos/youtube_logo.svg" 
-                                    class="w-8 h-8" 
-                                    alt="YouTube" 
-                                />
+                                <div 
+                                    class="w-8 h-8 bg-foreground" 
+                                    style="mask: url('/img/logos/youtube_logo.svg') no-repeat center / contain; -webkit-mask: url('/img/logos/youtube_logo.svg') no-repeat center / contain;"
+                                ></div>
                             </a>
 
                             <a 
@@ -82,11 +79,10 @@
                                 class="opacity-85 hover:scale-110 transition-transform hover:opacity-100" 
                                 aria-label="LinkedIn"
                             >
-                                <img 
-                                    src="/img/logos/linkedin_logo.svg" 
-                                    class="w-8 h-8" 
-                                    alt="LinkedIn" 
-                                />
+                                <div 
+                                    class="w-8 h-8 bg-foreground" 
+                                    style="mask: url('/img/logos/linkedin_logo.svg') no-repeat center / contain; -webkit-mask: url('/img/logos/linkedin_logo.svg') no-repeat center / contain;"
+                                ></div>
                             </a>
                         </div>
                     </div>
