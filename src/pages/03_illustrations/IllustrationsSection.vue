@@ -26,7 +26,7 @@
                 </button>
             </div>
 
-            <div class="text-center mt-12">
+            <div v-if="shouldShowButton" class="text-center mt-12">
                 <button
                     @click="showAll = !showAll"
                     class="theme-invert px-6 py-3 rounded-md hover:opacity-80 transition-all cursor-pointer font-bold active:scale-95 shadow-lg"
@@ -39,7 +39,7 @@
         <ModalCarousel
             :is-open="isOpen"
             :images="images"
-            :initial-index="initialIndex"s
+            :initial-index="initialIndex"
             :title="title"
             @close="closeLightbox"
         />
@@ -47,41 +47,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue' //
-import { illustrationCategories } from "@/pages/03_illustrations/illustrations.data"; //
-import type { IllustrationCategory, IllustrationImage } from "@/pages/03_illustrations/illustrations.data"; //
-import ModalCarousel from "@/components/layout/ModalCarousel.vue"; //
-import { useLightbox } from "@/composables/useLightbox"; //
+import { useIllustrations } from "./useIllustrations"
+import ModalCarousel from "@/components/layout/ModalCarousel.vue"
 
-const { isOpen, images, initialIndex, title, openLightbox, closeLightbox } = useLightbox(); //
-
-const showAll = ref(false)
-const isMobile = ref(false)
-
-const updateSize = () => { isMobile.value = window.innerWidth < 768 }
-
-onMounted(() => {
-    updateSize()
-    window.addEventListener('resize', updateSize)
-})
-onUnmounted(() => window.removeEventListener('resize', updateSize))
-
-// Lógica de visibilidad
-const visibleCategories = computed(() => {
-    if (showAll.value) return illustrationCategories
-    // En móvil mostramos 3, en PC podrías mostrar las 6 o también 3 según pides
-    return illustrationCategories.slice(0, 3)
-})
-
-const imgUrl = (cat: IllustrationCategory, img: IllustrationImage) => {
-    return `/img/illustrations/${cat.folder}/${img.name}.jpg`; //
-};
-
-const openGallery = (cat: IllustrationCategory) => {
-    const formattedImages = cat.images.map(img => ({
-        url: imgUrl(cat, img),
-        alt: img.alt || cat.title
-    }));
-    openLightbox(formattedImages, 0, cat.title); //
-};
+// Extraemos todo lo necesario del nuevo composable
+const { 
+    visibleCategories, 
+    shouldShowButton, 
+    showAll, 
+    imgUrl, 
+    openGallery,
+    isOpen,
+    images,
+    initialIndex,
+    title,
+    closeLightbox
+} = useIllustrations()
 </script>

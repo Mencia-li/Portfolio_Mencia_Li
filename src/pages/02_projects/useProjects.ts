@@ -7,35 +7,34 @@ export function useProjects() {
     const showAll = ref(false)
     const selectedProject = ref<Project | null>(null)
 
-    // --- LÓGICA PARA DETECTAR MÓVIL ---
-    const isMobile = ref(false)
-    const updateSize = () => {
-        // Definimos móvil como menos de 768px (estándar de Tailwind 'md')
-        isMobile.value = window.innerWidth < 768
+    // --- DETECCIÓN DE COLUMNAS ---
+    const columns = ref(3)
+    const updateColumns = () => {
+        if (window.innerWidth >= 1024) columns.value = 3      // LG: 3 columnas
+        else if (window.innerWidth >= 640) columns.value = 2 // SM: 2 columnas
+        else columns.value = 1                               // XS: 1 columna
     }
 
     onMounted(() => {
-        updateSize()
-        window.addEventListener('resize', updateSize)
+        updateColumns()
+        window.addEventListener('resize', updateColumns)
     })
+    onUnmounted(() => window.removeEventListener('resize', updateColumns))
 
-    onUnmounted(() => {
-        window.removeEventListener('resize', updateSize)
+    // Límite inicial según tu regla de filas
+    const initialLimit = computed(() => {
+        if (columns.value === 3) return 6 // 2 filas de 3
+        if (columns.value === 2) return 4 // 2 filas de 2
+        return 3                          // 3 filas de 1
     })
-    // ---------------------------------
-
-    const allProjects = projectsData
 
     const visibleProjects = computed<Project[]>(() => {
         if (showAll.value) return projectsData
-        // En móvil mostramos 3 inicialmente, en PC mostramos 6
-        const limit = isMobile.value ? 3 : 6
-        return projectsData.slice(0, limit)
+        return projectsData.slice(0, initialLimit.value)
     })
 
     const shouldShowButton = computed(() => {
-        const limit = isMobile.value ? 3 : 6
-        return projectsData.length > limit
+        return projectsData.length > initialLimit.value
     })
 
     const openPreview = (project: Project) => {
@@ -60,7 +59,6 @@ export function useProjects() {
 
     return {
         showAll,
-        allProjects,
         visibleProjects,
         shouldShowButton,
         selectedProject,
