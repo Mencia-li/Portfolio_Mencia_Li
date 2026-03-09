@@ -33,8 +33,6 @@ export function useLightbox() {
         }, 300)
     }
 
-    // 🛡️ SEGURO DE VIDA: Si el componente se destruye (ej: botón atrás del navegador),
-    // nos aseguramos de devolver el scroll a la normalidad.
     onUnmounted(() => {
         document.body.style.overflow = "auto"
         if (clearImagesTimeout) clearTimeout(clearImagesTimeout)

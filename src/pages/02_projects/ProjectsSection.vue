@@ -109,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, onMounted, onUnmounted } from "vue" // <-- Añadido onMounted y onUnmounted
+import { ref, nextTick, onMounted, onUnmounted } from "vue"
 import { X, ArrowRight } from "lucide-vue-next"
 import { useProjects } from "@/pages/02_projects/useProjects"
 import { Button } from "@/components/ui/button"
@@ -124,7 +124,6 @@ const {
     goToProject 
 } = useProjects()
 
-// --- LÓGICA DE CIERRE CON TECLA ESCAPE ---
 const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape' && selectedProject.value) {
         closePreview()
@@ -138,7 +137,6 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('keydown', handleKeyDown)
 })
-// -----------------------------------------
 
 const toggleBtn = ref<HTMLButtonElement | null>(null)
 

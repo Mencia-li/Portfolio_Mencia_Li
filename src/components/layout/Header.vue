@@ -64,7 +64,6 @@ import { useTheme } from "@/composables/useTheme"
 import { useNavigation } from "@/composables/useNavigation"
 import { Home, FolderKanban, Image, Mail, Palette, Menu } from "lucide-vue-next"
 
-// 1. Importar el componente de la música
 import MusicControl from "@/components/layout/MusicControl.vue"
 
 import {

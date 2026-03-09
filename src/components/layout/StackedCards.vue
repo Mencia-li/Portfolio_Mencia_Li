@@ -53,7 +53,7 @@ const getZIndex = (index: number) => {
     return 'z-0';
 };
 
-// 👇 AQUÍ AJUSTAMOS LA APERTURA DEL ABANICO
+// Abanico y su apertiura
 const getHoverTransform = (index: number) => {
     if (index === 0) {
         // Carta principal: se eleva y escala de forma muy sutil

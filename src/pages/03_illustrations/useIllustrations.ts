@@ -4,17 +4,16 @@ import type { IllustrationCategory, IllustrationImage } from "./illustrations.da
 import { useLightbox } from "@/composables/useLightbox"
 import { useGridColumns } from "@/composables/useGridColumns"
 
-// 🔥 VARIABLE GLOBAL PARA MANTENER LA SECCIÓN DESPLEGADA 🔥
 const showAll = ref(false)
 
 export function useIllustrations() {
     // Integramos el lightbox dentro del composable de ilustraciones
     const lightbox = useLightbox()
     
-    // --- DETECCIÓN DE COLUMNAS (Móvil, Tablet, PC) ---
+    // Detección de columnas (Móvil, Tablet, PC)
     const { columns } = useGridColumns()
 
-    // Límite de ventanas iniciales (según tu regla: 6, 4 o 3)
+    // Límite de ventanas iniciales (Regla: 6, 4 o 3)
     const initialLimit = computed(() => {
         if (columns.value === 3) return 6
         if (columns.value === 2) return 4

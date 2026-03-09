@@ -56,7 +56,7 @@ const props = defineProps<{
     isOpen: boolean
     images: LightboxImage[]
     initialIndex: number
-    title?: string // <-- AÑADIDO PARA RECIBIR EL TÍTULO
+    title?: string
 }>()
 
 const emit = defineEmits(['close'])
@@ -64,7 +64,6 @@ const emit = defineEmits(['close'])
 const currentSlide = ref(0)
 const carouselApi = ref<CarouselApi>()
 
-// Guardamos la referencia a la API del carrusel cuando se inicializa
 const onInitApi = (api: CarouselApi) => {
     if (!api) return
     carouselApi.value = api
@@ -75,7 +74,6 @@ const onInitApi = (api: CarouselApi) => {
     })
 }
 
-// ⌨️ NAVEGACIÓN MANUAL POR TECLADO
 const handleKeyDown = (e: KeyboardEvent) => {
     if (!props.isOpen) return
     

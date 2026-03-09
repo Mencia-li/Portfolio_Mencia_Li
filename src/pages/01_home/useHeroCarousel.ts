@@ -1,4 +1,3 @@
-// src/composables/useHeroCarousel.ts
 import { computed } from 'vue'
 
 export function useHeroCarousel() {

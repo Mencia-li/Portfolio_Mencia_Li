@@ -12,7 +12,6 @@ export function useNavigation() {
             // Si venimos de otra página, el router ya añade /#/#hash automáticamente
             await router.push({ path: "/", hash: targetHash })
         } else {
-            // ✨ ACTUALIZACIÓN: Forzamos el cambio de hash en la URL
             // Usamos replace para no ensuciar el historial del navegador con cada scroll
             router.replace({ path: "/", hash: targetHash }).catch(() => {})
 

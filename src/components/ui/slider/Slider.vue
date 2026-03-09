@@ -19,9 +19,9 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     data-slot="slider"
     :class="cn(
       'relative flex touch-none items-center select-none data-disabled:opacity-50',
-      // Estilos para HORIZONTAL
+      // Estilos para horizontal
       'data-[orientation=horizontal]:w-full',
-      // Estilos para VERTICAL (¡Sin el min-h-44 que rompía la caja!)
+      // Estilos para vertical
       'data-[orientation=vertical]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto',
       props.class,
     )"

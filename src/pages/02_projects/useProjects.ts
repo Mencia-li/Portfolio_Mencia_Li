@@ -9,7 +9,7 @@ const selectedProject = ref<Project | null>(null)
 export function useProjects() {
     const router = useRouter()
 
-    // --- DETECCIÓN DE COLUMNAS (Móvil, Tablet, PC) ---
+    // Detección de columnas (Móvil, Tablet, PC)
     const { columns } = useGridColumns()
 
     // Límite inicial según tu regla de filas

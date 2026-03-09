@@ -1,4 +1,3 @@
-// src/composables/useMusic.ts
 import { ref, watch, computed } from 'vue'
 
 export interface TrackInfo {
@@ -8,7 +7,7 @@ export interface TrackInfo {
     source: string
 }
 
-// 1. ESTADO GLOBAL (Con tus 4 canciones con créditos)
+// Estado global con 4 canciones
 const tracks: TrackInfo[] = [
     { 
         url: '/audio/track1.mp3', 
@@ -46,7 +45,7 @@ export function useMusic() {
     // Variable computada para saber qué canción suena ahora
     const currentTrack = computed(() => tracks[currentTrackIndex.value])
 
-    // INICIALIZACIÓN
+    // Inicializacion
     if (!audio && typeof window !== 'undefined') {
         audio = new Audio()
         const currentVol = volume.value[0] ?? 50
@@ -64,7 +63,6 @@ export function useMusic() {
         audio.addEventListener('ended', nextTrack)
     }
 
-    // COMUNICACIÓN CON LA CAJITA DE CHROME (Actualizado)
     function updateChromePlayer(index: number) {
         const track = tracks[index]
         if (track && 'mediaSession' in navigator) {
@@ -80,7 +78,6 @@ export function useMusic() {
         }
     }
 
-    // FUNCIÓN CENTRAL PARA CARGAR CANCIONES (Actualizada para TS)
     function loadTrack(index: number) {
         if (!audio) return
         const track = tracks[index]
@@ -91,7 +88,6 @@ export function useMusic() {
         }
     }
 
-    // FUNCIONES DE CONTROL
     function togglePlay() {
         if (!audio) return
         if (isPlaying.value) {
@@ -120,7 +116,6 @@ export function useMusic() {
         if (isPlaying.value) audio.play().catch(() => {})
     }
 
-    // NUEVO: Función para retroceder
     function prevTrack() {
         if (!audio) return
         
@@ -167,6 +162,6 @@ export function useMusic() {
         togglePlay,
         toggleMute,
         nextTrack,
-        prevTrack // <--- NUEVO
+        prevTrack
     }
 }

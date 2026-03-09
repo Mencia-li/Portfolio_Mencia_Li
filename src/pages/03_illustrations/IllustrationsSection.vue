@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from "vue" // <-- Añadir importaciones
+import { ref, nextTick } from "vue"
 import { useIllustrations } from "./useIllustrations"
 import ModalCarousel from "@/components/layout/ModalCarousel.vue"
 import StackedCards from "@/components/layout/StackedCards.vue" 
