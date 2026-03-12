@@ -49,3 +49,9 @@ src/
 ├── main.ts                     # Punto de entrada de la aplicación
 └── style.css                   # Estilos globales y variables CSS de los temas
 ```
+
+## Comandos principales
+
+- `npm install`: Instala todas las dependencias necesarias que están listadas en `package.json`.
+
+- `npm run dev`: Ejecuta el servidor de desarrollo, permitiendo ver y probar la aplicación en modo interactivo en local.
