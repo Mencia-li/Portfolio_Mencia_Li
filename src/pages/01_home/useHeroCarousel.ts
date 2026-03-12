@@ -1,9 +1,9 @@
 import { computed } from 'vue'
 
 export function useHeroCarousel() {
-    // Genera el array de rutas: /img/carrusel/carru1.jpg ... /img/carrusel/carru13.jpg
+    // Genera el array de rutas: /img/carrusel/carru1.webp ... /img/carrusel/carru13.webp
     const images = computed(() => 
-        Array.from({ length: 13 }, (_, i) => `/img/carrusel/carru${i + 1}.jpg`)
+        Array.from({ length: 13 }, (_, i) => `/img/carrusel/carru${i + 1}.webp`)
     )
 
     // Configuración básica para que el carrusel sea infinito

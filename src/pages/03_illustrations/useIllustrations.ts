@@ -30,7 +30,7 @@ export function useIllustrations() {
     })
 
     const imgUrl = (cat: IllustrationCategory, img: IllustrationImage) => {
-        return `/img/illustrations/${cat.folder}/${img.name}.jpg`
+        return `/img/illustrations/${cat.folder}/${img.name}.webp`
     }
 
     const openGallery = (cat: IllustrationCategory) => {
